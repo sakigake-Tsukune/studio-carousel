@@ -18,7 +18,7 @@
 
 /* 流れるレーン */
 .track {
-  display: flex;
+  display: auto;
   height: 100%;
   animation: flow 40s linear infinite;
   will-change: transform;
@@ -38,9 +38,11 @@
 }
 
 /* フワッと止まるための仕込み */
-.carousel:hover .track {
-  animation-play-state: paused;
+.track {
+  animation-timing-function: linear;
+  transition: animation-play-state 0.6s ease;
 }
+  
 
 /* アニメーション定義 */
 @keyframes flow {
@@ -74,6 +76,7 @@
   </div>
 </body>
 </html>
+
 
 
 
