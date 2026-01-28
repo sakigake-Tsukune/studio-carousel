@@ -6,7 +6,6 @@
 <title>Flow Carousel</title>
 
 <style>
-/* 外枠 */
 .carousel {
   width: 100%;
   max-width: 1536px;
@@ -16,15 +15,12 @@
   background: #f2f2f2;
 }
 
-/* 流れるレーン */
 .track {
-  display: auto;
+  display: flex;
   height: 100%;
   animation: flow 40s linear infinite;
-  will-change: transform;
 }
 
-/* 各アイテム */
 .item {
   width: 260px;
   height: 100%;
@@ -35,8 +31,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  max-width: none;   /* ← これが超重要 */
+  max-width: none;
+  display: block;
 }
+
+.carousel:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes flow {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+  
 
 /* フワッと止まるための仕込み */
 .track {
@@ -44,16 +51,6 @@
   transition: animation-play-state 0.6s ease;
 }
   
-
-/* アニメーション定義 */
-@keyframes flow {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
 </style>
 </head>
 
@@ -77,6 +74,7 @@
   </div>
 </body>
 </html>
+
 
 
 
