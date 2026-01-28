@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flow Carousel</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: transparent;
+  }
+
+  .carousel {
+    width: 100%;
+    max-width: 1536px;
+    height: 260px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    animation: flow 30s linear infinite;
+  }
+
+  .carousel:hover .track {
+    animation-play-state: paused;
+  }
+
+  .item {
+    flex-shrink: 0;
+    height: 100%;
+  }
+
+  .item img {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+  @keyframes flow {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* スマホ：タップ中停止 */
+  @media (hover: none) {
+    .carousel:active .track {
+      animation-play-state: paused;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div class="carousel">
+    <div class="track">
+      <!-- 1セット目 -->
+      <div class="item"><img src="IMAGE1_URL" alt="写真1"></div>
+      <div class="item"><img src="IMAGE2_URL" alt="写真2"></div>
+      <div class="item"><img src="IMAGE3_URL" alt="写真3"></div>
+      <div class="item"><img src="IMAGE4_URL" alt="写真4"></div>
+      <div class="item"><img src="IMAGE5_URL" alt="写真5"></div>
+
+      <!-- 無限ループ用コピー -->
+      <div class="item"><img src="IMAGE1_URL" alt="写真1"></div>
+      <div class="item"><img src="IMAGE2_URL" alt="写真2"></div>
+      <div class="item"><img src="IMAGE3_URL" alt="写真3"></div>
+      <div class="item"><img src="IMAGE4_URL" alt="写真4"></div>
+      <div class="item"><img src="IMAGE5_URL" alt="写真5"></div>
+    </div>
+  </div>
+</body>
+</html>
