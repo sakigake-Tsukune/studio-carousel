@@ -6,61 +6,51 @@
 <title>Flow Carousel</title>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+/* 外枠 */
+.carousel {
+  width: 100%;
+  max-width: 1536px;
+  height: 260px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #f2f2f2;
+}
 
-  body {
-    margin: 0;
-    background: transparent;
-  }
+/* 流れるレーン */
+.track {
+  display: flex;
+  height: 100%;
+  animation: flow 60s linear infinite;
+  will-change: transform;
+}
 
-  .carousel {
-    width: 100%;
-    max-width: 1536px;
-    height: 260px;
-    margin: 0 auto;
-    overflow: hidden;
-    background: #f2f2f2;
-  }
+/* 各アイテム */
+.item {
+  flex: 0 0 auto;
+}
 
-  .track {
-    display: flex;
-    width: max-content;
-    height: 100%;
-    animation: flow 30s linear infinite;
-  }
+/* 画像サイズを強制的に安定させる */
+.item img {
+  width: 300px;          /* ← ここが超重要 */
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  .carousel:hover .track {
-    animation-play-state: paused;
-  }
+/* フワッと止まるための仕込み */
+.carousel:hover .track {
+  animation-play-state: paused;
+}
 
-  .item {
-    flex-shrink: 0;
-    height: 100%;
+/* アニメーション定義 */
+@keyframes flow {
+  from {
+    transform: translateX(0);
   }
-
-  .item img {
-    height: 100%;
-    width: auto;
-    display: block;
+  to {
+    transform: translateX(-50%);
   }
-
-  @keyframes flow {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* スマホ：タップ中停止 */
-  @media (hover: none) {
-    .carousel:active .track {
-      animation-play-state: paused;
-    }
-  }
+}
 </style>
 </head>
 
@@ -84,4 +74,5 @@
   </div>
 </body>
 </html>
+
 
