@@ -6,14 +6,56 @@
 <title>Flow Carousel</title>
 
 <style>
+  html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent; /* ← 完全透明 */
+}
+  
 .carousel {
+  position: relative;
   width: 100%;
   max-width: 1536px;
   height: 240px;
   margin: 0 auto;
   overflow: hidden;
+  background: transparent; /* ← 透明 */
 }
 
+/* ===== 両端フェード（透明対応・超高級） ===== */
+.carousel::before,
+.carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0)
+  );
+}
+
+.carousel::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0)
+  );
+}
+
+/* ※ STUDIO背景が白以外の場合はここを調整 */
+ /* 例：背景 #f5f5f5 → rgba(245,245,245,0.9) */
+
+/* ===== トラック ===== */
 .track {
   display: flex;
   height: 100%;
@@ -21,17 +63,17 @@
   will-change: transform;
 }
 
-/* ★ フワッと止めるための仕込み */
+/* フワッと止まる */
 .carousel:hover .track {
   animation-play-state: paused;
   transition: transform 1.2s ease-out;
 }
 
-/* ★ hover解除時も自然に再開 */
 .carousel:not(:hover) .track {
   transition: transform 0.4s ease-in;
 }
 
+/* ===== アイテム ===== */
 .item {
   width: 250px;
   height: 100%;
@@ -45,9 +87,10 @@
   display: block;
 }
 
+/* ===== アニメーション ===== */
 @keyframes flow {
   from { transform: translateX(0); }
-  to   { transform: translateX(-960px); }
+  to   { transform: translateX(-960px); } /* 250px × 5枚 */
 }  
   
 </style>
@@ -73,6 +116,7 @@
   </div>
 </body>
 </html>
+
 
 
 
