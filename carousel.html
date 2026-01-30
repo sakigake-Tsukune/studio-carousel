@@ -18,7 +18,7 @@
 .track {
   display: flex;
   height: 100%;
-  animation: flow 90s linear infinite;
+  animation: flow 45s linear infinite; /* ← 速度2倍 */
 }
 
 .item {
@@ -30,8 +30,7 @@
 .item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: #f2f2f2;
+  object-fit: cover;   /* ← 縦いっぱい */
   display: block;
 }
 
@@ -41,9 +40,9 @@
 
 @keyframes flow {
   from { transform: translateX(0); }
-  to   { transform: translateX(-1600px); }
+  to   { transform: translateX(-1600px); } /* 320px × 5枚 */
 }
-
+  
   
   
 </style>
@@ -69,6 +68,7 @@
   </div>
 </body>
 </html>
+
 
 
 
