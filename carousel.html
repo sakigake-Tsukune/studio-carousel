@@ -12,13 +12,24 @@
   height: 240px;
   margin: 0 auto;
   overflow: hidden;
-  background: #f2f2f2;
 }
 
 .track {
   display: flex;
   height: 100%;
-  animation: flow 35s linear infinite; /* ← 速度2倍 */
+  animation: flow 35s linear infinite;
+  will-change: transform;
+}
+
+/* ★ フワッと止めるための仕込み */
+.carousel:hover .track {
+  animation-play-state: paused;
+  transition: transform 0.8s ease-out;
+}
+
+/* ★ hover解除時も自然に再開 */
+.carousel:not(:hover) .track {
+  transition: transform 0.4s ease-in;
 }
 
 .item {
@@ -30,20 +41,14 @@
 .item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* ← 縦いっぱい */
+  object-fit: cover;
   display: block;
-}
-
-.carousel:hover .track {
-  animation-play-state: paused;
 }
 
 @keyframes flow {
   from { transform: translateX(0); }
-  to   { transform: translateX(-950px); } /* 250px × 5枚 */
-}
-  
-  
+  to   { transform: translateX(-950px); }
+}  
   
 </style>
 </head>
@@ -68,6 +73,7 @@
   </div>
 </body>
 </html>
+
 
 
 
