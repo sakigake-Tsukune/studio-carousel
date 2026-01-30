@@ -30,9 +30,7 @@ html, body {
   background: transparent;
 }
 
-/* =====================
-   両端フェード（背景色自動対応）
-===================== */
+/* ===== 両端フェード ===== */
 .carousel::before,
 .carousel::after {
   content: "";
@@ -45,21 +43,15 @@ html, body {
 }
 
 .carousel::before {
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0)
-  );
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0));
 }
 
 .carousel::after {
-  background: linear-gradient(
-    to left,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0)
-  );
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0.9), rgba(255,255,255,0));
 }
-
+   
 /* =====================
    トラック
 ===================== */
@@ -70,7 +62,7 @@ html, body {
   will-change: transform;
 }
 
-/* PC：ホバー中だけ停止（フワッと） */
+/* PC：ホバーで停止 */
 @media (hover: hover) {
   .carousel:hover .track {
     animation-play-state: paused;
@@ -78,9 +70,9 @@ html, body {
   }
 }
 
-/* スマホ：タッチ中だけ停止 */
+/* スマホ：タップ中停止（iOS対応） */
 @media (hover: none) {
-  .carousel:active .track {
+  .carousel:hover .track {
     animation-play-state: paused;
     transition: transform 1.2s ease-out;
   }
@@ -169,6 +161,7 @@ html, body {
   </div>
 </body>
 </html>
+
 
 
 
